@@ -1,16 +1,11 @@
-//let palabra = "APPLE"
-let intentos = 6;
 
-/*let listapalabras = ["APPLE", "MOUSE", "HOUSE", "TRACE"];
-let posicion = Math.floor(Math.random() *listapalabras.length);
-let palabra = listapalabras[posicion];*/
+let intentos = 6;
 let palabra;
-//fetch("https://random-word.ryanrk.com/api/en/word/random/?Length=5")
-fetch("https://api.frontendexpert.io/api/fe/wordle-words")
+fetch("https://random-word.ryanrk.com/api/en/word/random/?Length=5")
+//fetch("https://api.frontendexpert.io/api/fe/wordle-words")
 .then( response => response.json())
 .then( response =>{
-  //console.log(response[0].toUpperCase());
-  console.log(response);
+  console.log(response[0].toUpperCase());
   palabra = response[0].toUpperCase();   
 })
 
@@ -22,17 +17,16 @@ fetch("https://api.frontendexpert.io/api/fe/wordle-words")
     console.log(palabra);
 })
 console.log(palabra);
-//let intento = document.getElementById("guess-input").value;
 const button = document.getElementById("guess-button");
-//intento = intento.toUpperCase();
-//intentos = intentos - 1;
 
 button.addEventListener("click", intentar)
+let intento;
 
 function intentar(){
     console.log("click!")
-    const intento = leerIntento();
-    if (intento.length !== 5){
+    console.log(intento)
+    intento = leerIntento();
+    if (intento.length != 5){
         alert("Debe ingresar solo palabras de 5 letras.")
         return
     }
@@ -43,13 +37,14 @@ function intentar(){
     const ROW = document.createElement("div");
     ROW.className = "row";
 
+    let SPAN;
 
     for (let i in intento){
-        const SPAN = document.createElement("span");
+        SPAN = document.createElement("span");
         SPAN.className = "letter";
         SPAN.innerHTML = intento[i];
         
-        if(palabra[0]===intento[i]){
+        if(palabra[i]===intento[i]){
             SPAN.style.backgroundColor = "#79b851";
             console.log(intento[i],"verde");
         }else if(palabra.includes(intento[i])){
@@ -59,26 +54,30 @@ function intentar(){
             SPAN.style.backgroundColor = "#a4aec4";
             console.log(intento[i],"gris");
         }
+        ROW.appendChild(SPAN);
     }
     console.log(SPAN);
-    ROW.appendChild(SPAN);    
-    }
+    
     GRID.appendChild(ROW);
 
     if (intento === palabra){
         console.log("ganaste");
         terminar("<h1>GANASTE!😀</h1>")
-        return
     }
 
     if (intentos == 0){
         console.log("perdiste");
         terminar("<h1>PERDISTE!😖</h1>")
+    }    
     }
+    
+
 
     function leerIntento(){
         const INTENTO = document.getElementById("guess-input").value.toUpperCase();
+        console.log(INTENTO);
         return INTENTO;
+        
     }
 
     function terminar(mensaje){
@@ -93,8 +92,5 @@ function intentar(){
 
 
 
-//let lista = ["A", "P", "P", "L", "E"];
 
-//console.log(palabra);
-//console.log(lista);
 
