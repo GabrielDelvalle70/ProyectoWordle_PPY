@@ -2,7 +2,6 @@
 let intentos = 6;
 let palabra;
 fetch("https://random-word.ryanrk.com/api/en/word/random/?Length=5")
-//fetch("https://api.frontendexpert.io/api/fe/wordle-words")
 .then( response => response.json())
 .then( response =>{
   console.log(response[0].toUpperCase());
@@ -26,8 +25,9 @@ function intentar(){
     console.log("click!")
     console.log(intento)
     intento = leerIntento();
+    mostrarMensaje("");
     if (intento.length != 5){
-        alert("Debe ingresar solo palabras de 5 letras.")
+        mostrarMensaje("<h1>Escriba una palabra de 5 letras</h1> ");
         return
     }
     intentos = intentos - 1;
@@ -86,6 +86,11 @@ function intentar(){
         button.disabled = true;
         let contenedor = document.getElementById('guesses');
         contenedor.innerHTML = mensaje;
+    }
+
+    function mostrarMensaje(mensaje){
+        let estado = document.getElementById('guesses');
+        estado.innerHTML = mensaje;
     }
     
 

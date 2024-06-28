@@ -1,10 +1,13 @@
 body {
     font-family: Arial, sans-serif;
+    background: rgb(239,239,245);
+    background: linear-gradient(90deg, rgba(239,239,245,1) 0%, rgba(232,235,218,1) 35%, rgba(220,222,213,1) 100%);
   }
      
   h1 {
     text-align: center;
     margin-top: 50px;
+    color: darkcyan;
   }
      
   #guess-input {
