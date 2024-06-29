@@ -25,8 +25,10 @@ function intentar(){
     console.log("click!")
     console.log(intento)
     intento = leerIntento();
-    mostrarMensaje("");
-    if (intento.length != 5){
+
+    mostrarMensaje("");// Limpia cualquier mensaje previo
+
+    if (intento.length != 5 || !/^[A-Z]+$/.test(intento)){
         mostrarMensaje("<h1>Escriba una palabra de 5 letras</h1> ");
         return
     }
@@ -67,7 +69,7 @@ function intentar(){
 
     if (intentos == 0){
         console.log("perdiste");
-        terminar("<h1>PERDISTE!😖</h1>")
+        terminar(`<h1>PERDISTE!😖 La palabra era ${palabra}</h1>`)
     }    
     }
     
